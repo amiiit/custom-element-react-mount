@@ -1,6 +1,13 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 
+const mountScript= (src) => {
+  const script = document.createElement('script');
+  script.src = src;
+  document.head.appendChild(script);
+};
+
+
 interface Props {
   src: string;
 }
@@ -14,12 +21,6 @@ export default class CustomElementReactMount extends React.Component<Props, Stat
     console.log('jolly');
   }
 
-  static mountScript(src) {
-    const script = document.createElement('script');
-    script.src = src;
-    document.head.appendChild(script);
-  }
-
   componentDidMount() {
     let CER = window.customElements;
     if (!CER) {
@@ -27,7 +28,7 @@ export default class CustomElementReactMount extends React.Component<Props, Stat
     }
     const elementName = this.props.children.toString();
     if (!CER.get(elementName)) {
-      this.mountScript(this.props.src);
+      mountScript(this.props.src);
     }
   }
 

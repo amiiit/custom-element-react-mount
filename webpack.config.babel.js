@@ -2,6 +2,8 @@ import webpack from 'webpack'
 import HtmlWebpackPlugin from 'html-webpack-plugin'
 import path from 'path'
 
+const runExamples = process.env.EXAMPLES === 'true';
+
 export default {
   entry: {
     lib: './lib/custom-element-react-mount.tsx',
@@ -29,11 +31,11 @@ export default {
     ],
   },
   plugins: [
-    new HtmlWebpackPlugin({
+    runExamples && new HtmlWebpackPlugin({
       template: './examples/index.html',
       filename: 'index.html',
     }),
-  ],
+  ].filter(Boolean),
   devServer: {
     hot: true, // hot module replacement. Depends on HotModuleReplacementPlugin
   },
