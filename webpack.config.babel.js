@@ -3,29 +3,31 @@ import HtmlWebpackPlugin from 'html-webpack-plugin'
 import path from 'path'
 
 const runExamples = process.env.EXAMPLES === 'true';
+const entry = {
+  'custom-element-react-mount': './lib/custom-element-react-mount.jsx',
+}
+if (runExamples) {
+  Object.assign(entry,{
+    app: './examples/app.jsx',
+    'my-custom-element': './examples/my-custom-element.js'
+  })
+}
 
 export default {
-  entry: {
-    lib: './lib/custom-element-react-mount.tsx',
-  },
+  entry,
   output: {
     path: path.resolve(__dirname, 'dist/'),
     filename: '[name].js',
   },
   resolve: {
     // Add `.ts` and `.tsx` as a resolvable extension.
-    extensions: ['.ts', '.tsx', '.js'], // note if using webpack 1 you'd also need a '' in the array as well
+    extensions: ['.jsx', '.js'], // note if using webpack 1 you'd also need a '' in the array as well
   },
   module: {
     rules: [
       {
         test: /.jsx?$/,
-        loaders: ['babel-loader'],
-        exclude: /node_modules/,
-      },
-      {
-        test: /.tsx?$/,
-        loaders: ['ts-loader'],
+        use: ['babel-loader'],
         exclude: /node_modules/,
       }
     ],
@@ -36,8 +38,5 @@ export default {
       filename: 'index.html',
     }),
   ].filter(Boolean),
-  devServer: {
-    hot: true, // hot module replacement. Depends on HotModuleReplacementPlugin
-  },
   devtool: 'eval-source-map',
 }

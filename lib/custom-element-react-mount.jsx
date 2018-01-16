@@ -1,5 +1,4 @@
-import * as React from 'react';
-import * as ReactDOM from 'react-dom';
+import React from 'react';
 
 const mountScript= (src) => {
   const script = document.createElement('script');
@@ -7,18 +6,12 @@ const mountScript= (src) => {
   document.head.appendChild(script);
 };
 
-
-interface Props {
-  src: string;
-}
-
-interface State {
-}
-
-export default class CustomElementReactMount extends React.Component<Props, State> {
-  constructor(props: Props) {
+export default class CustomElementReactMount extends React.Component {
+  constructor(props) {
     super(props);
-    console.log('jolly');
+    if (!props.src) {
+      throw 'no src'
+    }
   }
 
   componentDidMount() {
@@ -26,13 +19,13 @@ export default class CustomElementReactMount extends React.Component<Props, Stat
     if (!CER) {
       throw 'CustomElementsRegistry is not set. Please use polyfills or a browser that supports the WebComponents API';
     }
-    const elementName = this.props.children.toString();
+    const elementName = this.props.children.type;
     if (!CER.get(elementName)) {
       mountScript(this.props.src);
     }
   }
 
   render() {
-    return <>{this.props.children}</>;
+    return <div>{this.props.children}</div>;
   }
 }
