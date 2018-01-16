@@ -3,6 +3,7 @@
   "version": "0.1.2",
   "description": "React component that loads and mounts custom elements",
   "main": "lib/custom-element-react-mount.js",
+  "repository" : "https://github.com/amiiit/custom-element-react-mount",
   "author": "Amit Jakubowicz<jakubowicz.amit@gmail.com>",
   "license": "MIT",
   "scripts": {
