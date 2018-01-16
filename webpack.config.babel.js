@@ -4,7 +4,7 @@ import path from 'path'
 
 const runExamples = process.env.EXAMPLES === 'true';
 const entry = {
-  'custom-element-react-mount': './lib/custom-element-react-mount.jsx',
+  'custom-element-react-mount': './src/custom-element-react-mount.jsx',
 }
 if (runExamples) {
   Object.assign(entry,{
@@ -16,7 +16,7 @@ if (runExamples) {
 export default {
   entry,
   output: {
-    path: path.resolve(__dirname, 'dist/'),
+    path: path.resolve(__dirname, 'lib/'),
     filename: '[name].js',
   },
   resolve: {
