@@ -15,8 +15,6 @@
     "react-dom": "^16.2.0"
   },
   "devDependencies": {
-    "@types/react": "^16.0.34",
-    "@types/react-dom": "^16.0.3",
     "babel-core": "^6.26.0",
     "babel-eslint": "^8.0.1",
     "babel-loader": "^7.1.2",
