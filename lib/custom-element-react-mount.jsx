@@ -9,9 +9,6 @@ const mountScript= (src) => {
 export default class CustomElementReactMount extends React.Component {
   constructor(props) {
     super(props);
-    if (!props.src) {
-      throw 'no src'
-    }
   }
 
   componentDidMount() {
@@ -20,12 +17,30 @@ export default class CustomElementReactMount extends React.Component {
       throw 'CustomElementsRegistry is not set. Please use polyfills or a browser that supports the WebComponents API';
     }
     const elementName = this.props.children.type;
+    const src = this.props.src || CustomElementReactMount.getMappingForElementName(elementName)
+    if (!src) {
+      throw `No src prop and no mapping found for custom-element <${elementName}>`;
+    }
     if (!CER.get(elementName)) {
-      mountScript(this.props.src);
+      mountScript(src);
     }
   }
 
-  render() {
-    return <div>{this.props.children}</div>;
+  static addComponentURLMapping(mapping) {
+    if (mapping) {
+      Object.assign(CustomElementReactMount.prototype.internals.componentURLMapping, mapping)
+    }
   }
+
+  static getMappingForElementName(tagName) {
+    return CustomElementReactMount.prototype.internals.componentURLMapping[tagName]
+  }
+
+  render() {
+    return <React.Fragment>{this.props.children}</React.Fragment>;
+  }
+}
+
+CustomElementReactMount.prototype.internals = {
+  componentURLMapping: {}
 }

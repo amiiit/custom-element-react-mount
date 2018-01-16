@@ -2,6 +2,10 @@ import * as React from 'react'
 import * as ReactDOM from 'react-dom'
 import CustomElementReactMount from '../lib/custom-element-react-mount'
 
+CustomElementReactMount.addComponentURLMapping({
+  'my-custom-element': '/my-custom-element.js'
+})
+
 const App = () => {
   return <div>
     <header>
@@ -14,7 +18,7 @@ const App = () => {
       <hr/>
     </section>
     <section>
-      <CustomElementReactMount src="/my-custom-element.js">
+      <CustomElementReactMount>
         <my-custom-element/>
       </CustomElementReactMount>
     </section>
