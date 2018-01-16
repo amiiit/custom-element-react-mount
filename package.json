@@ -1,6 +1,6 @@
 {
   "name": "custom-element-react-mount",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "React component that loads and mounts custom elements",
   "main": "lib/custom-element-react-mount.js",
   "author": "Amit Jakubowicz<jakubowicz.amit@gmail.com>",
