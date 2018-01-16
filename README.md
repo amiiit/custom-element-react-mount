@@ -4,7 +4,7 @@ A React component that helps you to mount your WebComponents.
  
 ## Prerequisites:
 
-1. You have the CustomElement script available under a known URL that you're able to pass down as prop to <`CustomElement`>
+1. You have the CustomElement script available under a known URL that you're able to pass down as prop to `<CustomElement>`
 
 
 ## How to use:
@@ -40,6 +40,7 @@ const MyActualApp = () => (<div>
 </div>)
 ```
 
+Alternatively you can pass the src directly as a prop. This will override the above configuration if exists:
 ```jsx harmony
 import CustomElementReactMount from 'custom-element-react-mount'
 
